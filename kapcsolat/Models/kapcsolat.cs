@@ -6,17 +6,23 @@ using System.Threading.Tasks;
 
 namespace kapcsolat.Models
 {
-    internal class kapcsolat
+    internal class Kapcsolat
     {
-        public kapcsolat(int id, string nev, string cim, string email, string tel)
+        public Kapcsolat(int Id, string Nev, string Cim, string Email, string Tel)
         {
-            this.id = id;
-            this.nev = nev;
-            this.cim = cim;
-            this.email = email;
-            this.tel = tel;
+            id = Id;
+            nev = Nev;
+            cim = Cim;
+            email = Email;
+            tel = Tel;
         }
-        public kapcsolat() { }
+        public int Id { get => id; set => id = value; }
+        public string Nev { get => nev; set => nev = value; }
+        public string Cim { get => cim; set => cim = value; }
+        public string Email { get => email; set => email = value; }
+        public string Tel { get => tel; set => tel = value; }
+
+        public Kapcsolat() { }
 
         int id {  get; set; }
         string nev { get; set; }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using kapcsolat.Controller;
+using kapcsolat.Models;
+using kapcsolat.Views;
 
 namespace kapcsolat
 {
@@ -24,7 +27,10 @@ namespace kapcsolat
                 switch (valasz)
                 {
                     case "1":
-
+                        List<Kapcsolat> listaAdatbazisbol = new KapcsolatController().GetKapcsolatList();
+                        new KapcsolatView().ShowKapcsolatList(listaAdatbazisbol);
+                        Console.WriteLine("Nyomj meg egy gombot a visszatéréshez...");
+                        Console.ReadKey();
                         break;
                     case "2":
 
