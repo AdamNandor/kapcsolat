@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\KapcsolatController.cs" />
+    <Compile Include="Models\kapcsolat.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\KapcsolatView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -52,5 +55,6 @@
   <ItemGroup>
     <Content Include="Database\kapcsolat.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
