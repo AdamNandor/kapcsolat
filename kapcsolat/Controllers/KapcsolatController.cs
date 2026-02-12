@@ -48,14 +48,13 @@ namespace kapcsolat.Controller
         public string CreateKapcsolat(Kapcsolat kapcsolat)
         {
             MySqlConnection connection = new MySqlConnection();
-            string connectionString = "SERVER =localhost;DATABASE=kockasfuzet;UID=root;PASSWORD=;";
+            string connectionString = "SERVER =localhost;DATABASE=kapcsolat;UID=root;PASSWORD=;";
             connection.ConnectionString = connectionString;
             try
             {
                 connection.Open();
-                string sql = "INSERT INTO `szamla`(`Id`, `Név`, `Cím`, `Email`, `Telefon`) VALUES (null, @Nev, @Cim, @Email, @Tel)";
+                string sql = "INSERT INTO `kapcsolat`(`Név`, `Cím`, `Email`, `Telefon`) VALUES (null, @Nev, @Cim, @Email, @Tel)";
                 MySqlCommand command = new MySqlCommand(sql, connection);
-                command.Parameters.AddWithValue("@Id", kapcsolat.Id);
                 command.Parameters.AddWithValue("@Nev", kapcsolat.Nev);
                 command.Parameters.AddWithValue("@Cim", kapcsolat.Cim);
                 command.Parameters.AddWithValue("@Email", kapcsolat.Email);
@@ -70,30 +69,6 @@ namespace kapcsolat.Controller
                 return "Hiba történt: " + ex.Message;
             }
         }
-        public List<int> GetKapcsolatIdList()
-        {
-            MySqlConnection connection = new MySqlConnection();
-            string connectionString = "SERVER =localhost;DATABASE=kapcsolat;UID=root;PASSWORD=;";
-            connection.ConnectionString = connectionString;
-            try
-            {
-                connection.Open();
-                string sql = "SELECT Id FROM kapcsolat";
-                MySqlCommand command = new MySqlCommand(sql, connection);
-                List<int> eredmeny = new List<int>();
-                MySqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    eredmeny.Add(reader.GetInt32("Id"));
-                }
-                connection.Close();
-                return eredmeny;
-            }
-            catch (Exception)
-            {
-                //Console.WriteLine("Hiba történt: " + ex.Message);
-                return new List<int>();
-            }
-        }
+
     }
 }
