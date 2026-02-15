@@ -53,7 +53,7 @@ namespace kapcsolat.Controller
             try
             {
                 connection.Open();
-                string sql = "INSERT INTO `kapcsolat`(`Név`, `Cím`, `Email`, `Telefon`) VALUES (null, @Nev, @Cim, @Email, @Tel)";
+                string sql = "INSERT INTO `kapcsolat`(`Név`, `Cím`, `Email`, `Telefon`) VALUES (@Nev, @Cim, @Email, @Tel)";
                 MySqlCommand command = new MySqlCommand(sql, connection);
                 command.Parameters.AddWithValue("@Nev", kapcsolat.Nev);
                 command.Parameters.AddWithValue("@Cim", kapcsolat.Cim);
@@ -70,5 +70,32 @@ namespace kapcsolat.Controller
             }
         }
 
+        public string UpdateKapcsolat(Kapcsolat kapcsolat)
+        {
+            MySqlConnection connection = new MySqlConnection();
+            string connectionString = "SERVER =localhost;DATABASE=kapcsolat;UID=root;PASSWORD=;";
+            connection.ConnectionString = connectionString;
+            try
+            {
+                connection.Open();
+                string sql = "UPDATE kapcsolat SET Név=@Nev, Cím=@Cim, Email=@Email, Telefon=@Tel WHERE Azonosító=@Id";
+
+
+                MySqlCommand command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@Id", kapcsolat.Id);
+                command.Parameters.AddWithValue("@Nev", kapcsolat.Nev);
+                command.Parameters.AddWithValue("@Cim", kapcsolat.Cim);
+                command.Parameters.AddWithValue("@Email", kapcsolat.Email);
+                command.Parameters.AddWithValue("@Tel", kapcsolat.Tel);
+                int sorokSzama = command.ExecuteNonQuery();
+                connection.Close();
+                string valasz = sorokSzama > 0 ? "Sikeres módosítás" : "Sikertelen módosítás";
+                return valasz;
+            }
+            catch (Exception ex)
+            {
+                return "Hiba történt: " + ex.Message;
+            }
+        }
     }
 }

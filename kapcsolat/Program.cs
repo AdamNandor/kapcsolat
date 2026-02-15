@@ -33,10 +33,18 @@ namespace kapcsolat
                         Console.ReadKey();
                         break;
                     case "2":
-                        
+                        KapcsolatView view = new KapcsolatView();
+                        KapcsolatController controller = new KapcsolatController();
+
+                        Kapcsolat ujKapcsolat = view.CreateKapcsolatView();
+                        string eredmeny = controller.CreateKapcsolat(ujKapcsolat);
+
+                        Console.WriteLine(eredmeny);
+                        Console.WriteLine("Nyomj meg egy gombot a visszatéréshez...");
+                        Console.ReadKey();
                         break;
                     case "3":
-
+                        new KapcsolatView().UpdateKapcsolatView();
                         break;
                     case "4":
 
