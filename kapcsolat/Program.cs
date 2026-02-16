@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spectre.Console;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,8 +28,8 @@ namespace kapcsolat
                 switch (valasz)
                 {
                     case "1":
-                        List<Kapcsolat> listaAdatbazisbol = new KapcsolatController().GetKapcsolatList();
-                        new KapcsolatView().ShowKapcsolatList(listaAdatbazisbol);
+                        var lista = new KapcsolatController().GetKapcsolatList();
+                        Spectre.Console.AnsiConsole.Write(new KapcsolatView().Tablazat(lista));
                         Console.WriteLine("Nyomj meg egy gombot a visszatéréshez...");
                         Console.ReadKey();
                         break;
@@ -47,7 +48,13 @@ namespace kapcsolat
                         new KapcsolatView().UpdateKapcsolatView();
                         break;
                     case "4":
-
+                        Console.WriteLine("Adja meg az azonosítót:");
+                        int id = int.Parse(Console.ReadLine());
+                        new KapcsolatController().DeleteKapcsolat(id);
+                        Console.Clear();
+                        Console.WriteLine("Sikeresen törölve");
+                        Console.WriteLine("Nyomj meg egy gombot a visszatéréshez...");
+                        Console.ReadKey();
                         break;
                     case "5":
                         kilep = true;

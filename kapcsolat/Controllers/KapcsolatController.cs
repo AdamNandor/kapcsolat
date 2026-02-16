@@ -97,5 +97,27 @@ namespace kapcsolat.Controller
                 return "Hiba történt: " + ex.Message;
             }
         }
+
+        public string DeleteKapcsolat(int id)
+        {
+            MySqlConnection connection = new MySqlConnection();
+            string connectionString = "SERVER =localhost;DATABASE=kapcsolat;UID=root;PASSWORD=;";
+            connection.ConnectionString = connectionString;
+            try
+            {
+                connection.Open();
+                string sql = "DELETE FROM `kapcsolat` WHERE `Azonosító` = @Id";
+                MySqlCommand command = new MySqlCommand(sql, connection);
+                command.Parameters.AddWithValue("@Id", id);
+                int sorokSzama = command.ExecuteNonQuery();
+                connection.Close();
+                string valasz = sorokSzama > 0 ? "Sikeres törlés" : "Sikertelen törlés";
+                return valasz;
+            }
+            catch (Exception ex)
+            {
+                return "Hiba történt: " + ex.Message;
+            }
+        }
     }
 }
