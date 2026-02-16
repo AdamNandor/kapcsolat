@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 12. 10:34
+-- Létrehozás ideje: 2026. Feb 16. 19:54
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -34,6 +34,34 @@ CREATE TABLE `kapcsolat` (
   `Email` varchar(32) NOT NULL,
   `Telefon` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `kapcsolat`
+--
+
+INSERT INTO `kapcsolat` (`Azonosító`, `Név`, `Cím`, `Email`, `Telefon`) VALUES
+(7, 'Teszt', 'Teszt utca', 'teszt@gmail.com', '+361234567'),
+(8, 'Teszt2', 'Teszt2 utca', 'teszt2@gmail.com', '+361234567');
+
+--
+-- Indexek a kiírt táblákhoz
+--
+
+--
+-- A tábla indexei `kapcsolat`
+--
+ALTER TABLE `kapcsolat`
+  ADD PRIMARY KEY (`Azonosító`);
+
+--
+-- A kiírt táblák AUTO_INCREMENT értéke
+--
+
+--
+-- AUTO_INCREMENT a táblához `kapcsolat`
+--
+ALTER TABLE `kapcsolat`
+  MODIFY `Azonosító` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
